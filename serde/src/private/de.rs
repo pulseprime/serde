@@ -1215,6 +1215,16 @@ mod content {
             self.deserialize_integer(visitor)
         }
 
+        serde_if_integer128! {
+            fn deserialize_i128<V>(self,visitor:V) -> Result<V::Value,Self::Error>where V:Visitor<'de> {
+                self.deserialize_integer(visitor)
+            }
+
+            fn deserialize_u128<V>(self,visitor:V) -> Result<V::Value,Self::Error>where V:Visitor<'de> {
+                self.deserialize_integer(visitor)
+            }
+        }
+
         fn deserialize_f32<V>(self, visitor: V) -> Result<V::Value, Self::Error>
         where
             V: Visitor<'de>,
